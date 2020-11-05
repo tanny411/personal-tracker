@@ -17,13 +17,14 @@ mongoose
     .connect(db, {
         useNewUrlParser: true,
         useCreateIndex: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        ssl: true
     })
-    .then(() => console.log('MongoDB COnnected...'))
+    .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
 // Use routes
-app.use('api/items', item);
+app.use('/api/items', item);
 
 // Use port from env variable (eg in heroku) or 5000
 const port = process.env.PORT || 5000;
