@@ -2,19 +2,18 @@ import React, { Component, component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { v4 as uuid } from "uuid";
+import { connect } from 'react-redux';
+import { getItems } from '../actions/itemActions';
+import PropTypes from 'prop-types';
+
 
 class TodoList extends Component {
-    state = {
-        items: [
-            { id: uuid(), name: 'Eggs'},
-            { id: uuid(), name: 'Mild'},
-            { id: uuid(), name: 'Steak'},
-            { id: uuid(), name: 'Water'}
-        ]
+    componentDidMount(){
+        this.props.getItems();
     }
-
+    
     render() {
-        const { items } = this.state;
+        const { items } = this.props.item;
         return (
             <Container>
                 <Button
@@ -60,4 +59,14 @@ class TodoList extends Component {
     }
 }
 
-export default TodoList;
+TodoList.propTypes = {
+    getItems: PropTypes.func.isRequired,
+    item: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    // here the item in state.item is the key of the reducer in rootReducer
+    item: state.item
+});
+
+export default connect(mapStateToProps, { getItems })(TodoList);

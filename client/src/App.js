@@ -3,12 +3,17 @@ import './App.css';
 import AppNavbar from './components/AppNavbar';
 import TodoList from './components/TodoList';
 
+import { Provider } from 'react-redux';
+import store from './store';
+
 function App() {
   return (
-    <div className="App">
-      <AppNavbar/>
-      <TodoList/>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <AppNavbar/>
+        <TodoList/>
+      </div>
+    </Provider>
   );
 }
 
