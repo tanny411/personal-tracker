@@ -12,3 +12,14 @@ Several things installed in order to create this app are (besides those in the p
 - Then we should be calling our action from our component from `componentDidMount` method.
 - Components with redux added to tem are calles `containers`.
 - Refere to [reactstrap.github.io](https://reactstrap.github.io/) for reactstrap compoenet stuff.
+- **Deploy**
+    - If there was no backend, we could deploy it anywhere like github.io, after doing `npm run build` which create static assets in the build folder.
+    - We deploy in heroku and use a script that builds for us the static assets.
+    - Install [heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) by `sudo snap install --classic heroku`.
+    - Sign up to heroku.com
+    - From projects main folder;
+        ```
+        heroku login
+        heroku create
+        ```
+        go to heroku dashboard, click on the app just created and click deploy.
