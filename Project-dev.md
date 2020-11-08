@@ -22,4 +22,7 @@ Several things installed in order to create this app are (besides those in the p
         heroku login
         heroku create
         ```
-        go to heroku dashboard, click on the app just created and click deploy.
+    - Go to heroku dashboard, click on the app just created and click deploy. Add heroku remote and push to it.
+    - Remember to **allow all `IP`s** in atlas mongodb, else heroku ip cannot access it.
+    - Save mongodb **URI in heroku env** and load from there. (I only gave 1 week access to it)
+    - Also remove **proxy from package.json of client** folder and the **enhancer for redux extension in chrome**.
