@@ -10,4 +10,5 @@ Several things installed in order to create this app are (besides those in the p
 - We create out store.js file, types.js file in actions folder. Create all our actions in in it. And also in out reducers folder create all our reducers, and a index.js file contains the rooReducer.
 - Finally using `connect` we export our components with arguments so that it can access the store and call Actions. The action and the state are set as props, so we should set proptypes.
 - Then we should be calling our action from our component from `componentDidMount` method.
-
+- Components with redux added to tem are calles `containers`.
+- Refere to [reactstrap.github.io](https://reactstrap.github.io/) for reactstrap compoenet stuff.
