@@ -27,3 +27,6 @@ Several things installed in order to create this app are (besides those in the p
     - Save mongodb **URI in heroku env** and load from there. 
     - Also remove **proxy from package.json of client** folder and the **enhancer for redux extension in chrome**.
     - Might need this https://github.com/bradtraversy/mern_shopping_list/issues/5
+- **Authentication**
+    - This project uses JWT to authenticate users and a custom middleware to create private routes. Instead of custom middleware you can also use passport.
+    
