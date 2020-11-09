@@ -26,3 +26,4 @@ Several things installed in order to create this app are (besides those in the p
     - Remember to **allow all `IP`s** in atlas mongodb, else heroku ip cannot access it. (I only gave 1 week access to it)
     - Save mongodb **URI in heroku env** and load from there. 
     - Also remove **proxy from package.json of client** folder and the **enhancer for redux extension in chrome**.
+    - Might need this https://github.com/bradtraversy/mern_shopping_list/issues/5
