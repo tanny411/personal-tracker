@@ -9,6 +9,8 @@ import {
     NavLink,
     Container
 } from 'reactstrap';
+import RegisterModal from './auth/RegisterModal';
+import Logout from './auth/Logout';
 
 class AppNavbar extends Component {
     // we can make a constructor and bind functions in it
@@ -38,11 +40,15 @@ class AppNavbar extends Component {
                     <NavbarBrand href="/">TodoList</NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
+                        <Nav className="ml-auto" navbar>\
                             <NavItem>
-                                <NavLink href="https://github.com/tanny411">
-                                    Github
-                                </NavLink>
+                                <RegisterModal/>
+                            </NavItem>
+                            <NavItem>
+                                <Logout />
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="https://github.com/tanny411"> Visit Me </NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
