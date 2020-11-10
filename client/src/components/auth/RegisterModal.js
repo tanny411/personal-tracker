@@ -34,9 +34,9 @@ class RegisterModal extends Component {
 
     componentDidUpdate(previousProps) {
         const { error, isAuthenticated } = this.props;
-        if(error !== previousProps.errors) {
+        if(error !== previousProps.error) {
             // Check for register error
-            if(error.id === 'REGISTER_FAIL')
+            if(error.id === 'REGISTER_FAIL') 
                 this.setState({ msg: error.msg.msg });
         }
 
@@ -101,7 +101,7 @@ class RegisterModal extends Component {
 
                                 <Label for="email">Email</Label>
                                 <Input
-                                    type="rmail"
+                                    type="email"
                                     name="email"
                                     id="email"
                                     placeholder="Email"
