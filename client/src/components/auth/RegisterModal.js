@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
     Button,
     Modal,
@@ -79,8 +79,8 @@ class RegisterModal extends Component {
 
     render() {
         return (
-            <div>
-                <NavLink onClick={this.toggle} ref="#">
+            <Fragment>
+                <NavLink onClick={this.toggle} href="#">
                     Register
                 </NavLink>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} >
@@ -129,7 +129,7 @@ class RegisterModal extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
-            </div>
+            </Fragment>
         );
     }
 }
