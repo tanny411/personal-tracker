@@ -1,17 +1,17 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
-import AppNavbar from './components/AppNavbar';
-import TodoList from './components/TodoList';
-import ItemModal from './components/ItemModal';
-import { Container } from 'reactstrap';
+import AppNavbar from "./components/AppNavbar";
+import TodoList from "./components/TodoList";
+import ItemModal from "./components/ItemModal";
+import { Container } from "reactstrap";
 
-import { Provider } from 'react-redux';
-import store from './store';
-import { loadUser } from './actions/authActions';
-import { Component } from 'react';
+import { Provider } from "react-redux";
+import store from "./store";
+import { loadUser } from "./actions/authActions";
+import { Component } from "react";
 
-class App extends Component{
+class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
   }
@@ -20,10 +20,10 @@ class App extends Component{
     return (
       <Provider store={store}>
         <div className="App">
-          <AppNavbar/>
+          <AppNavbar />
           <Container>
-            <ItemModal/>
-            <TodoList/>
+            <ItemModal />
+            <TodoList />
           </Container>
         </div>
       </Provider>

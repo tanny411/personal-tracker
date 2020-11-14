@@ -1,96 +1,97 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    Container
-} from 'reactstrap';
-import RegisterModal from './auth/RegisterModal';
-import LoginModal from './auth/LoginModal';
-import Logout from './auth/Logout';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  Container,
+} from "reactstrap";
+import RegisterModal from "./auth/RegisterModal";
+import LoginModal from "./auth/LoginModal";
+import Logout from "./auth/Logout";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class AppNavbar extends Component {
-    // we can make a constructor and bind functions in it
-    // but instead of we use arrow function, we don't need to bind
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         isOpen: false
-    //     }
-    // }
+  // we can make a constructor and bind functions in it
+  // but instead of we use arrow function, we don't need to bind
+  // constructor(props){
+  //     super(props);
+  //     this.state = {
+  //         isOpen: false
+  //     }
+  // }
 
-    state = {
-        isOpen: false
-    }
-    
-    static propTypes = {
-        auth: PropTypes.object.isRequired
-    }
+  state = {
+    isOpen: false,
+  };
 
-    toggle = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
-    
-    render() {
-        
-        const { isAuthenticated, user} = this.props.auth
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+  };
 
-        const authLinks = (
-            <Fragment>
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  };
+
+  render() {
+    const { isAuthenticated, user } = this.props.auth;
+
+    const authLinks = (
+      <Fragment>
+        <NavItem>
+          <span className="navbar-text mr-3">
+            <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+          </span>
+        </NavItem>
+        <NavItem>
+          <Logout />
+        </NavItem>
+      </Fragment>
+    );
+
+    const guestLinks = (
+      <Fragment>
+        <NavItem>
+          <RegisterModal />
+        </NavItem>
+        <NavItem>
+          <LoginModal />
+        </NavItem>
+      </Fragment>
+    );
+
+    return (
+      <div>
+        <Navbar color="dark" dark expand="sm" className="mb-5">
+          <Container>
+            <NavbarBrand href="/">TodoList</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                {isAuthenticated ? authLinks : guestLinks}
                 <NavItem>
-                    <span className="navbar-text mr-3">
-        <strong>{ user ? `Welcome ${user.name}` : ''}</strong>
-                    </span>
+                  <NavLink href="https://github.com/tanny411">
+                    {" "}
+                    Visit Me{" "}
+                  </NavLink>
                 </NavItem>
-                <NavItem>
-                    <Logout />
-                </NavItem>
-            </Fragment>
-        );
-
-        const guestLinks = (
-            <Fragment>
-                <NavItem>
-                    <RegisterModal/>
-                </NavItem>
-                <NavItem>
-                    <LoginModal/>
-                </NavItem>
-            </Fragment>
-        );
-
-
-        return (
-        <div>
-            <Navbar color="dark" dark expand="sm" className="mb-5">
-                <Container>
-                    <NavbarBrand href="/">TodoList</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle}/>
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            { isAuthenticated ? authLinks : guestLinks}
-                            <NavItem>
-                                <NavLink href="https://github.com/tanny411"> Visit Me </NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Container>
-            </Navbar>
-        </div>
-        );
-    }
+              </Nav>
+            </Collapse>
+          </Container>
+        </Navbar>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = state => ({
-    auth: state.auth
-})
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
 export default connect(mapStateToProps, null)(AppNavbar);
