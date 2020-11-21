@@ -29,4 +29,4 @@ Several things installed in order to create this app are (besides those in the p
     - Might need this https://github.com/bradtraversy/mern_shopping_list/issues/5
 - **Authentication**
     - This project uses JWT to authenticate users and a custom middleware to create private routes. Instead of custom middleware you can also use passport.
-    
+- Learn about **PWA**: https://github.com/sharmaaayu981/PWA-Demo-App

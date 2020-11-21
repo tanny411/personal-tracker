@@ -1,15 +1,20 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-
-import AppNavbar from "./components/AppNavbar";
-import TodoList from "./components/TodoList";
-import ItemModal from "./components/ItemModal";
-import { Container } from "reactstrap";
+import { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/authActions";
-import { Component } from "react";
+
+import AppNavbar from "./components/layout/AppNavbar";
+import Footer from "./components/layout/Footer";
+import Landing from "./components/layout/Landing";
+
+import TodoList from "./components/TodoList";
+import ItemModal from "./components/ItemModal";
+import { Container } from "reactstrap";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 class App extends Component {
   componentDidMount() {
@@ -19,13 +24,17 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <AppNavbar />
-          <Container>
-            <ItemModal />
-            <TodoList />
-          </Container>
-        </div>
+        <Router>
+          <div className="App flex-wrapper">
+            <AppNavbar />
+            <Route exact path="/" component={Landing} />
+            {/* <Container>
+              <ItemModal />
+              <TodoList />
+            </Container> */}
+            <Footer />
+          </div>
+        </Router>
       </Provider>
     );
   }

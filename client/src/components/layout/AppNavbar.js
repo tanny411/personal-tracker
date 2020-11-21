@@ -9,9 +9,9 @@ import {
   NavLink,
   Container,
 } from "reactstrap";
-import RegisterModal from "./auth/RegisterModal";
-import LoginModal from "./auth/LoginModal";
-import Logout from "./auth/Logout";
+import RegisterModal from "../auth/RegisterModal";
+import LoginModal from "../auth/LoginModal";
+import Logout from "../auth/Logout";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -68,19 +68,13 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar color="dark" dark expand="sm" className="mb-5">
+        <Navbar dark expand="sm" className="mb-5 bg-purp-dark">
           <Container>
             <NavbarBrand href="/">TodoList</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 {isAuthenticated ? authLinks : guestLinks}
-                <NavItem>
-                  <NavLink href="https://github.com/tanny411">
-                    {" "}
-                    Visit Me{" "}
-                  </NavLink>
-                </NavItem>
               </Nav>
             </Collapse>
           </Container>

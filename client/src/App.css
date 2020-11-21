@@ -1,3 +1,47 @@
+/*Landing Page*/
+
+img {
+  width: 100%;
+}
+
+.landing {
+  position: relative;
+  background: url('./img/bg-laptop.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  margin-top: -50px;
+  margin-bottom: -50px;
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
+
+.dark-overlay {
+  background-color: rgba(3, 0, 7, 0.775);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-form {
+  opacity: 0.9;
+}
+
+.latest-profiles-img {
+  width: 40px;
+  height: 40px;
+}
+
+.form-control::placeholder {
+  color: #bbb !important;
+}
+
+/*Item classes*/
+
 .remove-btn {
   margin-right: 0.5rem;
 }
@@ -20,4 +64,27 @@
 .fade-exit-active {
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
+}
+
+/*Utilities*/
+
+.bg-purp-light{
+  background-color: rgb(90, 0, 174);
+}
+
+.bg-purp-dark{
+  background-color: rgb(37, 2, 70);
+}
+
+.bg-purp-darker{
+  background-color: rgb(23, 0, 44);
+}
+
+/*Layout Utilities*/
+
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between
 }
