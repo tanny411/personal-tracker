@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import RegisterModal from "../auth/RegisterModal";
+import LoginModal from "../auth/LoginModal";
 
 class Landing extends Component {
   render() {
@@ -16,8 +18,12 @@ class Landing extends Component {
                   atque suscipit mollitia recusandae dolorum eligendi explicabo.
                 </p>
                 <hr/>
-                <a href="register.html" className="btn btn-lg btn-info mr-2">Sign up</a>
-                <a href="login.html" className="btn btn-lg btn-light">Login</a>
+                <div className="btn bg-purp-light w-25">
+                    <RegisterModal/>
+                </div>
+                <div className="btn bg-purp-light w-25 ml-5">
+                    <LoginModal/>
+                </div>
               </div>
             </div>
           </div>

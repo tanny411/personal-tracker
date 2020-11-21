@@ -1,3 +1,10 @@
+a {
+  color: white;
+}
+a:hover {
+  color: rgb(191, 191, 191);
+}
+
 /*Landing Page*/
 
 img {
@@ -69,7 +76,11 @@ img {
 /*Utilities*/
 
 .bg-purp-light{
-  background-color: rgb(90, 0, 174);
+  background-color: rgb(78, 0, 150);
+}
+
+.bg-purp-light:hover{
+  background-color: rgb(70, 0, 135);
 }
 
 .bg-purp-dark{
