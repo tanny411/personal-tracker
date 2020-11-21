@@ -5,6 +5,9 @@ const JWT_secret = require("../../config/keys").JWT_secret;
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
 
+// Load Input Valudation
+const validateLoginInput = require("../../validation/login");
+
 // User Model
 const User = require("../../models/User");
 
@@ -14,18 +17,27 @@ const User = require("../../models/User");
 router.post("/", (req, res) => {
   const { email, password } = req.body;
 
-  //Simple validation
-  if (!email || !password) {
-    return res.status(400).json({ msg: "Please enter all fields" });
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  //Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
   }
 
   //Check for existing user
   User.findOne({ email }).then((user) => {
-    if (!user) return res.status(400).json({ msg: "User does not exist" });
+    if (!user) {
+      errors.email = "User does not exist";
+      return res.status(400).json(errors);
+    }
 
     //Validate password
     bcrypt.compare(password, user.password).then((isMatch) => {
-      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+      if (!isMatch) {
+        errors.password = "Invalid credentials";
+        return res.status(400).json(errors);
+      }
+
       jwt.sign(
         { id: user.id },
         JWT_secret,

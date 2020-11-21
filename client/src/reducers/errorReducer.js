@@ -10,7 +10,7 @@ function errorReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ERRORS:
       return {
-        msg: action.payload.msg,
+        msg: action.payload.msg, // we get an object of all errors
         status: action.payload.status,
         id: action.payload.id,
       };
