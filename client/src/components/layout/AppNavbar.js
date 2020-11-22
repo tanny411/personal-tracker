@@ -70,7 +70,7 @@ class AppNavbar extends Component {
       <div>
         <Navbar dark expand="sm" className="mb-5 bg-purp-dark">
           <Container>
-            <NavbarBrand href="/">TodoList</NavbarBrand>
+            <NavbarBrand href={isAuthenticated ? "/dashboard" : "/"}>TodoList</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>

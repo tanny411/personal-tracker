@@ -33,7 +33,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 //Login User
-export const login = ({ email, password }) => (dispatch) => {
+export const login = (userData, history) => (dispatch) => {
   // Headers
   const config = {
     headers: {
@@ -41,17 +41,15 @@ export const login = ({ email, password }) => (dispatch) => {
     },
   };
 
-  // Request Body
-  const body = JSON.stringify({ email, password });
-
   axios
-    .post("/api/auth", body, config)
-    .then((res) =>
+    .post("/api/auth", userData, config)
+    .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+      history.push("/dashboard");
+    })
     .catch((err) => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
@@ -63,7 +61,7 @@ export const login = ({ email, password }) => (dispatch) => {
 };
 
 // Register User
-export const register = ({ name, email, password }) => (dispatch) => {
+export const register = (userData, history) => (dispatch) => {
   // Headers
   const config = {
     headers: {
@@ -71,17 +69,15 @@ export const register = ({ name, email, password }) => (dispatch) => {
     },
   };
 
-  // Request Body
-  const body = JSON.stringify({ name, email, password });
-
   axios
-    .post("/api/users", body, config)
-    .then((res) =>
+    .post("/api/users", userData, config)
+    .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+      history.push("/dashboard");
+    })
     .catch((err) => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")

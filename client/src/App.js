@@ -28,10 +28,16 @@ class App extends Component {
           <div className="App flex-wrapper">
             <AppNavbar />
             <Route exact path="/" component={Landing} />
-            {/* <Container>
-              <ItemModal />
-              <TodoList />
-            </Container> */}
+            <Route
+              exact
+              path="/dashboard"
+              component={() =>
+                <Container>
+                  <ItemModal />
+                  <TodoList />
+                </Container>
+              }
+            />
             <Footer />
           </div>
         </Router>

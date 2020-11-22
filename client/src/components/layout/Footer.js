@@ -28,19 +28,19 @@ export default () => {
                         <hr className="bg-purp-light mb-2 mt-0 d-inline-block mx-auto" style={{width: "75px", height: "2px"}}/>
                         <div className="list-unstyled text-center">
                             <a href="https://github.com/tanny411">
-                                <i class="fab fa-github text-white mr-4 fa-lg"></i>
+                                <i className="fab fa-github text-white mr-4 fa-lg"></i>
                             </a>
                             <a href="https://www.linkedin.com/in/tanny411/">
-                                <i class="fab fa-linkedin-in text-white mr-4 fa-lg"></i>
+                                <i className="fab fa-linkedin-in text-white mr-4 fa-lg"></i>
                             </a>
                             <a href="https://tanny411.github.io/">
-                                <i class="fas fa-poo text-white mr-4 fa-lg"></i>
+                                <i className="fas fa-poo text-white mr-4 fa-lg"></i>
                             </a>
                             <a href="https://www.youtube.com/channel/UCbT2Y0Kcy882q47P_Nl0vIA">
-                                <i class="fab fa-youtube text-white mr-4 fa-lg"></i>
+                                <i className="fab fa-youtube text-white mr-4 fa-lg"></i>
                             </a>
                             <a href="https://twitter.com/AishaKh13954163">
-                                <i class="fab fa-twitter text-white fa-lg"></i>
+                                <i className="fab fa-twitter text-white fa-lg"></i>
                             </a>
                         </div>
                     </div>

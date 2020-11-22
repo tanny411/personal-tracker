@@ -9,9 +9,10 @@ import {
   Label,
   Input,
   NavLink,
-  Alert,
 } from "reactstrap";
 import { connect } from "react-redux";
+import classnames from "classnames";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
@@ -21,7 +22,7 @@ class LoginModal extends Component {
     modal: false,
     email: "",
     password: "",
-    msg: null,
+    errors: {},
   };
 
   static propTypes = {
@@ -34,8 +35,9 @@ class LoginModal extends Component {
   componentDidUpdate(previousProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== previousProps.error) {
-      // Check for register error
-      if (error.id === "LOGIN_FAIL") this.setState({ msg: error.msg.msg });
+      // Check for login error
+      if (error.id === "LOGIN_FAIL") this.setState({ errors: error.errors });
+      else this.setState({ errors: {} });
     }
 
     // If authenticated, close modal
@@ -70,10 +72,12 @@ class LoginModal extends Component {
     };
 
     //Attempt to login
-    this.props.login(user);
+    this.props.login(user, this.props.history);
   };
 
   render() {
+    const { errors } = this.state;
+
     return (
       <Fragment>
         <NavLink onClick={this.toggle} href="#">
@@ -82,30 +86,42 @@ class LoginModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
           <ModalBody>
-            {this.state.msg ? (
-              <Alert color="danger">{this.state.msg}</Alert>
-            ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="email">Email</Label>
+                <Label for="email" className="mt-3">
+                  Email
+                </Label>
                 <Input
                   type="email"
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className="mb-3"
+                  className={classnames("", {
+                    "is-invalid": errors.email,
+                  })}
                   onChange={this.onChange}
                 ></Input>
+                {errors.email && (
+                  <div className="invalid-feedback">{errors.email}</div>
+                )}
 
-                <Label for="password">Password</Label>
+                <Label for="password" className="mt-3">
+                  Password
+                </Label>
                 <Input
                   type="password"
                   name="password"
                   id="password"
-                  className="mb-3"
+                  className={classnames("", {
+                    "is-invalid": errors.password,
+                  })}
                   placeholder="Password"
                   onChange={this.onChange}
                 ></Input>
+                {errors.password && (
+                  <div className="invalid-feedback">{errors.password}</div>
+                )}
+
                 <Button color="dark" style={{ marginTop: "2rem" }} block>
                   Login
                 </Button>
@@ -123,4 +139,6 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { login, clearErrors })(LoginModal);
+export default connect(mapStateToProps, { login, clearErrors })(
+  withRouter(LoginModal)
+);
