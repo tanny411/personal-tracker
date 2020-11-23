@@ -16,13 +16,25 @@ img {
   background: url('./img/bg-laptop.png') no-repeat;
   background-size: cover;
   background-position: center;
-  height: 90vh;
+  height: 80vh;
   margin-top: -50px;
-  margin-bottom: -50px;
+  /* margin-bottom: -50px; */
 }
 
 .landing-inner {
   padding-top: 80px;
+}
+
+@media screen and (max-width: 376px) {
+  .landing-inner{
+    padding-top: 0px;
+  }
+}
+
+@media screen and (max-width: 787px) {
+  .landing{
+    height: 100vh;
+  }
 }
 
 .dark-overlay {
@@ -32,19 +44,6 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-.card-form {
-  opacity: 0.9;
-}
-
-.latest-profiles-img {
-  width: 40px;
-  height: 40px;
-}
-
-.form-control::placeholder {
-  color: #bbb !important;
 }
 
 /*Item classes*/
@@ -97,5 +96,5 @@ img {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
 }

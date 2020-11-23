@@ -2,7 +2,7 @@ import React from 'react';
 
 export default () => {
     return (
-        <footer className="bg-purp-dark text-white pt-4 text-center small mt-5">
+        <footer className="bg-purp-dark text-white pt-4 text-center small">
             <div className="container text-md-left">
                 <div className="row">
                     <div className="col-md-6 mb-2">

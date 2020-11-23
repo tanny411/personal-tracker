@@ -17,12 +17,14 @@ class Landing extends Component {
                   laudantium minus architecto ea perferendis optio officia ab
                   atque suscipit mollitia recusandae dolorum eligendi explicabo.
                 </p>
-                <hr/>
-                <div className="btn bg-purp-light w-25">
-                    <RegisterModal/>
-                </div>
-                <div className="btn bg-purp-light w-25 ml-5">
-                    <LoginModal/>
+                <hr />
+                <div className="d-flex flex-column align-items-center">
+                  <div className="w-50 mt-4 btn bg-purp-light" style={{padding: "0px"}}>
+                    <RegisterModal />
+                  </div>
+                  <div className="w-50 mt-3 btn bg-purp-light" style={{padding: "0px"}}>
+                    <LoginModal />
+                  </div>
                 </div>
               </div>
             </div>
