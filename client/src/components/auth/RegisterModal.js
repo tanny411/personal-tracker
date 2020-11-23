@@ -5,17 +5,14 @@ import {
   ModalHeader,
   ModalBody,
   Form,
-  FormGroup,
-  Label,
-  Input,
   NavLink,
 } from "reactstrap";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class RegisterModal extends Component {
   state = {
@@ -92,77 +89,45 @@ class RegisterModal extends Component {
           <ModalHeader toggle={this.toggle}>Register</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for="name">Name</Label>
-                <Input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Name"
-                  className={classnames("", {
-                    "is-invalid": errors.name,
-                  })}
-                  onChange={this.onChange}
-                ></Input>
-                {errors.name && (
-                  <div className="invalid-feedback">{errors.name}</div>
-                )}
+              <TextFieldGroup
+                label="Name"
+                name="name"
+                id="name"
+                placeholder="Name"
+                error={errors.name}
+                onChange={this.onChange}
+              />
+              <TextFieldGroup
+                label="Email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                type="email"
+                error={errors.email}
+                onChange={this.onChange}
+              />
+              <TextFieldGroup
+                label="Password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                type="password"
+                error={errors.password}
+                onChange={this.onChange}
+              />
+              <TextFieldGroup
+                label="Confirm Password"
+                name="password2"
+                id="password2"
+                placeholder="Confirm Password"
+                type="password"
+                error={errors.password2}
+                onChange={this.onChange}
+              />
 
-                <Label for="email" className="mt-3">
-                  Email
-                </Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  className={classnames("", {
-                    "is-invalid": errors.email,
-                  })}
-                  onChange={this.onChange}
-                ></Input>
-                {errors.email && (
-                  <div className="invalid-feedback">{errors.email}</div>
-                )}
-
-                <Label for="password" className="mt-3">
-                  Password
-                </Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className={classnames("", {
-                    "is-invalid": errors.password,
-                  })}
-                  placeholder="Password"
-                  onChange={this.onChange}
-                ></Input>
-                {errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
-                )}
-
-                <Label for="password2" className="mt-3">
-                  Confirm Password
-                </Label>
-                <Input
-                  type="password"
-                  name="password2"
-                  id="password2"
-                  className={classnames("", {
-                    "is-invalid": errors.password2,
-                  })}
-                  placeholder="Confirm Password"
-                  onChange={this.onChange}
-                ></Input>
-                {errors.password2 && (
-                  <div className="invalid-feedback">{errors.password2}</div>
-                )}
-
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
-                  Register
-                </Button>
-              </FormGroup>
+              <Button color="dark" style={{ marginTop: "2rem" }} block>
+                Register
+              </Button>
             </Form>
           </ModalBody>
         </Modal>

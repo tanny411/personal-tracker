@@ -16,6 +16,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class LoginModal extends Component {
   state = {
@@ -87,45 +88,27 @@ class LoginModal extends Component {
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for="email" className="mt-3">
-                  Email
-                </Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  className={classnames("", {
-                    "is-invalid": errors.email,
-                  })}
-                  onChange={this.onChange}
-                ></Input>
-                {errors.email && (
-                  <div className="invalid-feedback">{errors.email}</div>
-                )}
-
-                <Label for="password" className="mt-3">
-                  Password
-                </Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className={classnames("", {
-                    "is-invalid": errors.password,
-                  })}
-                  placeholder="Password"
-                  onChange={this.onChange}
-                ></Input>
-                {errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
-                )}
-
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
-                  Login
-                </Button>
-              </FormGroup>
+              <TextFieldGroup
+                label="Email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                type="email"
+                error={errors.email}
+                onChange={this.onChange}
+              />
+              <TextFieldGroup
+                label="Password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                type="password"
+                error={errors.password}
+                onChange={this.onChange}
+              />
+              <Button color="dark" style={{ marginTop: "2rem" }} block>
+                Login
+              </Button>
             </Form>
           </ModalBody>
         </Modal>
