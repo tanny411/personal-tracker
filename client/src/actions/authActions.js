@@ -12,7 +12,7 @@ import {
 } from "../actions/types.js";
 
 // Check token and load user
-export const loadUser = () => (dispatch, getState, history) => {
+export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({ type: USER_LOADING });
 
@@ -22,9 +22,8 @@ export const loadUser = () => (dispatch, getState, history) => {
       // If token is expired, logout user, else authorize
       const currentTime = Date.now() / 1000;
       if (res.data.exp < currentTime) {
-        history.push("/");
         dispatch({
-          type: LOGOUT_SUCCESS,
+          type: AUTH_ERROR,
         });
       } else {
         dispatch({

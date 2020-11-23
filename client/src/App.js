@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -8,17 +8,14 @@ import { loadUser } from "./actions/authActions";
 import AppNavbar from "./components/layout/AppNavbar";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
-
-import TodoList from "./components/TodoList";
-import ItemModal from "./components/ItemModal";
-import { Container } from "reactstrap";
+import UserLanding from "./components/user-layout/UserLanding";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 class App extends Component {
   componentDidMount() {
-    store.dispatch(loadUser(this.props.history));
+    store.dispatch(loadUser());
   }
 
   render() {
@@ -31,12 +28,7 @@ class App extends Component {
             <Route
               exact
               path="/dashboard"
-              component={() =>
-                <Container>
-                  <ItemModal />
-                  <TodoList />
-                </Container>
-              }
+              component={UserLanding}
             />
             <Footer />
           </div>
@@ -46,4 +38,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;
