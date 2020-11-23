@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -18,7 +18,7 @@ import "./App.css";
 
 class App extends Component {
   componentDidMount() {
-    store.dispatch(loadUser());
+    store.dispatch(loadUser(this.props.history));
   }
 
   render() {
@@ -46,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -12,18 +12,27 @@ import {
 } from "../actions/types.js";
 
 // Check token and load user
-export const loadUser = () => (dispatch, getState) => {
+export const loadUser = () => (dispatch, getState, history) => {
   // User loading
   dispatch({ type: USER_LOADING });
 
   axios
     .get("/api/auth/user", tokenConfig(getState))
-    .then((res) =>
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data,
-      })
-    )
+    .then((res) => {
+      // If token is expired, logout user, else authorize
+      const currentTime = Date.now() / 1000;
+      if (res.data.exp < currentTime) {
+        history.push("/");
+        dispatch({
+          type: LOGOUT_SUCCESS,
+        });
+      } else {
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        });
+      }
+    })
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
@@ -89,7 +98,8 @@ export const register = (userData, history) => (dispatch) => {
 };
 
 // Logout User
-export const logout = () => {
+export const logout = (history) => {
+  history.push("/");
   return {
     type: LOGOUT_SUCCESS,
   };

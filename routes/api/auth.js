@@ -64,7 +64,12 @@ router.post("/", (req, res) => {
 router.get("/user", auth, (req, res) => {
   User.findById(req.user.id)
     .select("-password")
-    .then((user) => res.json(user));
+    .then((user) => {
+      // Send the expiration time
+      retObj = user.toObject();
+      retObj.exp = req.user.exp;
+      res.json(retObj);
+    });
 });
 
 module.exports = router;
