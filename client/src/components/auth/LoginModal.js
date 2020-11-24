@@ -5,18 +5,14 @@ import {
   ModalHeader,
   ModalBody,
   Form,
-  FormGroup,
-  Label,
-  Input,
   NavLink,
 } from "reactstrap";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
-import TextFieldGroup from "../common/TextFieldGroup";
+import FieldGroup from "../common/FieldGroup";
 
 class LoginModal extends Component {
   state = {
@@ -88,7 +84,7 @@ class LoginModal extends Component {
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
-              <TextFieldGroup
+              <FieldGroup
                 label="Email"
                 name="email"
                 id="email"
@@ -97,7 +93,7 @@ class LoginModal extends Component {
                 error={errors.email}
                 onChange={this.onChange}
               />
-              <TextFieldGroup
+              <FieldGroup
                 label="Password"
                 name="password"
                 id="password"

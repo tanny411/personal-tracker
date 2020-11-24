@@ -12,7 +12,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
-import TextFieldGroup from "../common/TextFieldGroup";
+import FieldGroup from "../common/FieldGroup";
 
 class RegisterModal extends Component {
   state = {
@@ -89,7 +89,7 @@ class RegisterModal extends Component {
           <ModalHeader toggle={this.toggle}>Register</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
-              <TextFieldGroup
+              <FieldGroup
                 label="Name"
                 name="name"
                 id="name"
@@ -97,7 +97,7 @@ class RegisterModal extends Component {
                 error={errors.name}
                 onChange={this.onChange}
               />
-              <TextFieldGroup
+              <FieldGroup
                 label="Email"
                 name="email"
                 id="email"
@@ -106,7 +106,7 @@ class RegisterModal extends Component {
                 error={errors.email}
                 onChange={this.onChange}
               />
-              <TextFieldGroup
+              <FieldGroup
                 label="Password"
                 name="password"
                 id="password"
@@ -115,7 +115,7 @@ class RegisterModal extends Component {
                 error={errors.password}
                 onChange={this.onChange}
               />
-              <TextFieldGroup
+              <FieldGroup
                 label="Confirm Password"
                 name="password2"
                 id="password2"

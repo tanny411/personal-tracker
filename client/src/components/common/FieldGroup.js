@@ -1,9 +1,10 @@
 import React from "react";
-import { FormGroup, Label, Input } from "reactstrap";
+import { FormGroup, Label, Input, FormText } from "reactstrap";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import conditionalPropType from "./conditionalPropType";
 
-const TextFieldGroup = ({
+const FieldGroup = ({
   label,
   type,
   name,
@@ -14,6 +15,7 @@ const TextFieldGroup = ({
   onChange,
   info,
   disabled,
+  options,
 }) => {
   return (
     <FormGroup>
@@ -29,13 +31,13 @@ const TextFieldGroup = ({
         onChange={onChange}
         disabled={disabled}
       ></Input>
-      {info && <small className="form-text text-muted">{info}</small>}
+      {info && <FormText color="muted">{info}</FormText>}
       {error && <div className="invalid-feedback">{error}</div>}
     </FormGroup>
   );
 };
 
-TextFieldGroup.propTypes = {
+FieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   label: PropTypes.string.isRequired,
@@ -46,10 +48,16 @@ TextFieldGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
   disabled: PropTypes.string,
+  options: conditionalPropType(
+    (props, propName, componentName) =>
+      props["type"] === "select" &&
+      (props[propName] === undefined || !Array.isArray(props[propName])),
+    "'options' must be an array if 'type' is select"
+  ),
 };
 
-TextFieldGroup.defaultProps = {
+FieldGroup.defaultProps = {
   type: "text",
 };
 
-export default TextFieldGroup;
+export default FieldGroup;
