@@ -68,7 +68,7 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar dark expand="sm" className="mb-5 bg-purp-dark">
+        <Navbar className="mb-5 bg-purp-dark" expand="sm">
           <Container>
             <NavbarBrand href={isAuthenticated ? "/dashboard" : "/"}>TodoList</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />

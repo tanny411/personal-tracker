@@ -7,7 +7,7 @@ export default () => {
                 <div className="row">
                     <div className="col-md-6 mb-2">
                         <h6 className="text-uppercase font-weight-bold">Personal Tracker</h6>
-                        <hr className="bg-purp-light mb-2 mt-0 d-inline-block mx-auto" style={{width: "170px", height: "2px"}}/>
+                        <hr className="bg-purp-lightest mb-2 mt-0 d-inline-block mx-auto" style={{width: "170px", height: "2px"}}/>
                         <p className="mt-2">
                             Personal Tracker is your go to companion to help declutter your life and make management easier.
                             Track every aspect of your life, from expenses, savings and groceries, to your habits, health and exercise routines.
@@ -15,7 +15,7 @@ export default () => {
                     </div>
                     <div className="col-md-3 mb-2 text-center">
                         <h6 className="text-uppercase font-weight-bold">Developer</h6>
-                        <hr className="bg-purp-light mb-2 mt-0 d-inline-block mx-auto" style={{width: "100px", height: "2px"}}/>
+                        <hr className="bg-purp-lightest mb-2 mt-0 d-inline-block mx-auto" style={{width: "100px", height: "2px"}}/>
                         <ul className="list-unstyled text-center">
                             <li className="">React-Redux</li>
                             <li className="">Express</li>
@@ -25,7 +25,7 @@ export default () => {
                     </div>
                     <div className="col-md-3 mb-2 text-center">
                         <h6 className="text-uppercase font-weight-bold">Find me</h6>
-                        <hr className="bg-purp-light mb-2 mt-0 d-inline-block mx-auto" style={{width: "75px", height: "2px"}}/>
+                        <hr className="bg-purp-lightest mb-2 mt-0 d-inline-block mx-auto" style={{width: "75px", height: "2px"}}/>
                         <div className="list-unstyled text-center mt-4">
                             <a href="https://github.com/tanny411">
                                 <i className="fab fa-github text-white mr-4 fa-lg"></i>

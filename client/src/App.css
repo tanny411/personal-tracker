@@ -74,20 +74,20 @@ img {
 
 /*Utilities*/
 
-.bg-purp-light{
-  background-color: rgb(78, 0, 150);
-}
-
-.bg-purp-light:hover{
-  background-color: rgb(70, 0, 135);
-}
-
-.bg-purp-dark{
-  background-color: rgb(37, 2, 70);
-}
-
 .bg-purp-darker{
-  background-color: rgb(23, 0, 44);
+  background-color: #3d217e;
+}
+.bg-purp-dark{
+  background-color: #4741b6;
+}
+.bg-purp-light{
+  background-color: #4361ee;
+}
+.bg-purp-lightest{
+  background-color: #4895ef;
+}
+.bg-purp-light:hover{
+  background-color: #4895ef;
 }
 
 /*Layout Utilities*/
