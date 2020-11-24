@@ -3,14 +3,13 @@ import { connect } from "react-redux";
 import { logout } from "../../actions/authActions";
 import PropTypes from "prop-types";
 import { NavLink } from "reactstrap";
-import { withRouter } from "react-router-dom";
 
 class Logout extends Component {
   static propTypes = {
     logout: PropTypes.func.isRequired,
   };
 
-  logout = () => this.props.logout(this.props.history);
+  logout = () => this.props.logout();
 
   render() {
     return (
@@ -23,4 +22,4 @@ class Logout extends Component {
   }
 }
 
-export default connect(null, { logout })(withRouter(Logout));
+export default connect(null, { logout })(Logout);

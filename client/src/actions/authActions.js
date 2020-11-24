@@ -97,8 +97,7 @@ export const register = (userData, history) => (dispatch) => {
 };
 
 // Logout User
-export const logout = (history) => {
-  history.push("/");
+export const logout = () => {
   return {
     type: LOGOUT_SUCCESS,
   };
