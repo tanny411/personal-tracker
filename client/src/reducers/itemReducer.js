@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   items: [],
-  loading: false,
+  isLoading: false,
 };
 
 function itemReducer(state = initialState, action) {
@@ -16,7 +16,7 @@ function itemReducer(state = initialState, action) {
       return {
         ...state,
         items: action.payload,
-        loading: false,
+        isLoading: false,
       };
     case DELETE_ITEM:
       return {
@@ -31,7 +31,7 @@ function itemReducer(state = initialState, action) {
     case ITEMS_LOADING:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       };
     default:
       return state;

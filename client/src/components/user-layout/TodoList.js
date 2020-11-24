@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import { getItems, deleteItem } from "../../actions/itemActions";
 import PropTypes from "prop-types";
+import Spinner from '../common/Spinner';
 
 class TodoList extends Component {
   componentDidMount() {
@@ -15,8 +16,9 @@ class TodoList extends Component {
   };
 
   render() {
-    const { items } = this.props.item;
-    return (
+    const { items, isLoading } = this.props.item;
+
+    let content = (
       <Container>
         <ListGroup>
           <TransitionGroup className="todo-list">
@@ -39,6 +41,12 @@ class TodoList extends Component {
         </ListGroup>
       </Container>
     );
+
+    if (isLoading) {
+      content = <Spinner />;
+    }
+
+    return content;
   }
 }
 
