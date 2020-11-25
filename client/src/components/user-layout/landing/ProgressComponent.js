@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Summary extends Component {
+export default class ProgressComponent extends Component {
     render() {
         return (
             <div>

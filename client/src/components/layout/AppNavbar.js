@@ -42,7 +42,7 @@ class AppNavbar extends Component {
   };
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
       <Fragment>
@@ -80,7 +80,7 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar className="mb-5 bg-purp-dark" expand="sm" dark>
+        <Navbar className="bg-purp-dark" expand="sm" dark>
           <Container>
             <NavbarBrand href={isAuthenticated ? "/dashboard" : "/"}>
               TodoList

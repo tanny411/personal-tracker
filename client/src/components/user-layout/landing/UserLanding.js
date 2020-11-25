@@ -1,12 +1,18 @@
-import React, { Component } from "react";
-import { Container } from "reactstrap";
+import React, { Component, Fragment } from "react";
+import Cards from './Cards';
+import CarouselComponent from './CarouselComponent';
+import ProgressComponent from './ProgressComponent';
+import Summary from './Summary';
 
 class UserLanding extends Component {
   render() {
     return (
-      <Container>
-        User Landing
-      </Container>
+      <Fragment>
+        <CarouselComponent/>
+        <ProgressComponent/>
+        <Summary/>
+        <Cards/>
+      </Fragment>
     );
   }
 }
