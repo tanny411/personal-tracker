@@ -102,7 +102,7 @@ class LoginModal extends Component {
                 error={errors.password}
                 onChange={this.onChange}
               />
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
+              <Button className="bg-pink-purp" style={{ marginTop: "2rem" }} block>
                 Login
               </Button>
             </Form>

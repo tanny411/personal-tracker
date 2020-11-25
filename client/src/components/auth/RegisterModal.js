@@ -125,7 +125,7 @@ class RegisterModal extends Component {
                 onChange={this.onChange}
               />
 
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
+              <Button className="bg-pink-purp" style={{ marginTop: "2rem" }} block>
                 Register
               </Button>
             </Form>

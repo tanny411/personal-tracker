@@ -45,7 +45,7 @@ router.post("/", (req, res) => {
           jwt.sign(
             { id: user.id },
             JWT_secret,
-            { expiresIn: 3600 }, //token will last for an hour
+            { expiresIn: '1d' }, //token will last for an hour
             (err, token) => {
               if (err) throw err;
               res.json({

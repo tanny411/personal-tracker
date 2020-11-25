@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
-import { getItems, deleteItem } from "../../actions/itemActions";
+import { getItems, deleteItem } from "../../../../actions/itemActions";
 import PropTypes from "prop-types";
-import Spinner from '../common/Spinner';
+import Spinner from "../../../common/Spinner";
 
 class TodoList extends Component {
   componentDidMount() {
@@ -19,12 +19,12 @@ class TodoList extends Component {
     const { items, isLoading } = this.props.item;
 
     let content = (
-      <Container>
+      <Container style={{ marginBottom: "2rem", padding: "0px"}}>
         <ListGroup>
           <TransitionGroup className="todo-list">
             {items.map(({ _id, name }) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
-                <ListGroupItem>
+                <ListGroupItem className="bg-light item">
                   <Button
                     className="remove-btn"
                     color="danger"

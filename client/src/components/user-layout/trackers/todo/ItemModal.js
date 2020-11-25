@@ -6,11 +6,10 @@ import {
   ModalBody,
   Form,
   FormGroup,
-  Label,
   Input,
 } from "reactstrap";
 import { connect } from "react-redux";
-import { addItem } from "../../actions/itemActions";
+import { addItem } from "../../../../actions/itemActions";
 
 class ItemModal extends Component {
   state = {
@@ -49,7 +48,7 @@ class ItemModal extends Component {
     return (
       <div>
         <Button
-          color="dark"
+          className="item-button"
           style={{ marginBottom: "2rem" }}
           onClick={this.toggle}
         >

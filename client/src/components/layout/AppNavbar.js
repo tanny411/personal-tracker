@@ -12,6 +12,8 @@ import {
 import RegisterModal from "../auth/RegisterModal";
 import LoginModal from "../auth/LoginModal";
 import Logout from "../auth/Logout";
+import Trackers from "../user-layout/Trackers";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -45,9 +47,19 @@ class AppNavbar extends Component {
     const authLinks = (
       <Fragment>
         <NavItem>
-          <span className="navbar-text text-white mr-3">
-            <strong>{user ? `Welcome ${user.name}` : ""}</strong>
-          </span>
+          <NavLink tag={Link} to="/dashboard">
+            {" "}
+            Home{" "}
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <Trackers />
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to="/settings">
+            {" "}
+            Settings{" "}
+          </NavLink>
         </NavItem>
         <NavItem>
           <Logout />
@@ -68,9 +80,11 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar className="mb-5 bg-purp-dark" expand="sm">
+        <Navbar className="mb-5 bg-purp-dark" expand="sm" dark>
           <Container>
-            <NavbarBrand href={isAuthenticated ? "/dashboard" : "/"}>TodoList</NavbarBrand>
+            <NavbarBrand href={isAuthenticated ? "/dashboard" : "/"}>
+              TodoList
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>

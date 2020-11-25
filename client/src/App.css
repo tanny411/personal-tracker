@@ -13,7 +13,7 @@ img {
 
 .landing {
   position: relative;
-  background: url('./img/bg-laptop.png') no-repeat;
+  background: url("./img/bg-laptop.png") no-repeat;
   background-size: cover;
   background-position: center;
   height: 80vh;
@@ -26,13 +26,13 @@ img {
 }
 
 @media screen and (max-width: 376px) {
-  .landing-inner{
+  .landing-inner {
     padding-top: 0px;
   }
 }
 
 @media screen and (max-width: 787px) {
-  .landing{
+  .landing {
     height: 100vh;
   }
 }
@@ -50,6 +50,16 @@ img {
 
 .remove-btn {
   margin-right: 0.5rem;
+}
+
+.item-button {
+  background-color: #3d217e; /*purp-darker*/
+}
+.item-button:hover {
+  background-color: #7209b7;/*pink-purp*/
+}
+.item:hover {
+  background-color: #7109b72a !important;
 }
 
 /*fade transition*/
@@ -74,25 +84,50 @@ img {
 
 /*Utilities*/
 
-.bg-purp-darker{
+/*PURPLE*/
+.bg-purp-darker {
   background-color: #3d217e;
 }
-.bg-purp-dark{
-  background-color: #4741b6;
+.bg-purp-dark {
+  background-color: #3c3797;
 }
-.bg-purp-light{
-  background-color: #4361ee;
+.bg-purp-light {
+  background-color: #3b56ce;
 }
-.bg-purp-lightest{
-  background-color: #4895ef;
+.bg-purp-lightest {
+  background-color: #488bef;
 }
-.bg-purp-light:hover{
-  background-color: #4895ef;
+.bg-purp-light:hover {
+  background-color: #488bef;
+}
+/*PINK*/
+.bg-pink-purp {
+  background-color: #7209b7;
+}
+.bg-pink-purp:hover {
+  background-color: #b5179e;
+}
+.bg-pink-dark {
+  background-color: #b5179e;
+}
+.bg-pink-dark:hover {
+  background-color: #f72585;
+}
+.bg-pink-light {
+  background-color: #f72585;
 }
 
-
-.purp-lightest{
-  color: #4895ef;
+.purp-darker {
+  color: #3d217e;
+}
+.purp-darker:hover {
+  color: #3b56ce;
+}
+.purp-light {
+  color: #3b56ce;
+}
+.purp-lightest {
+  color: #488bef;
 }
 
 /*Layout Utilities*/

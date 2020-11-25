@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import TodoList from "./TodoList";
-import ItemModal from "./ItemModal";
 import { Container } from "reactstrap";
+import ItemModal from "./ItemModal";
+import TodoList from "./TodoList";
 
-class UserLanding extends Component {
+export default class Todo extends Component {
   render() {
     return (
       <Container>
@@ -13,5 +13,3 @@ class UserLanding extends Component {
     );
   }
 }
-
-export default UserLanding;
