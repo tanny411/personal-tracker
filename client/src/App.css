@@ -167,3 +167,22 @@ img {
     font-weight: bold;
   }
 }
+
+/*Progress Bars*/
+.progressbar-styles{
+  height: 1.5rem;
+}
+.progressbar-link{
+  color:black;
+}
+.progressbar-link:hover{
+  color:#3d217e; /*purp-darker*/
+  text-decoration: none;
+}
+.bg-custom-light{
+  background-color: white;
+}
+
+.bg-custom-light:hover{
+  background-color: rgba(206, 200, 200, 0.604);
+}
