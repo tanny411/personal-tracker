@@ -58,7 +58,7 @@ img {
   margin-bottom: 2rem;
 }
 .item-button:hover {
-  background-color: #7209b7;/*pink-purp*/
+  background-color: #7209b7; /*pink-purp*/
 }
 .item:hover {
   background-color: #7109b72a !important;
@@ -143,10 +143,10 @@ img {
 
 /*Carousel*/
 
-.carousel-item{
+.carousel-item {
   background-color: black;
 }
-.carousel-item img{
+.carousel-item img {
   height: 60vh;
   opacity: 60%;
   background-color: black;
@@ -155,7 +155,12 @@ img {
 .carousel-caption {
   top: 30%;
   bottom: auto;
-  display: block!important;
+  display: block !important;
+}
+.carousel-caption h3 {
+  font-size: 4rem;
+  font-family: 'Alex Brush', cursive;
+  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.892);
 }
 
 @media screen and (max-width: 400px) {
@@ -169,20 +174,57 @@ img {
 }
 
 /*Progress Bars*/
-.progressbar-styles{
+
+.progressbar-styles {
   height: 1.5rem;
+  box-shadow: 5px 3px 6px #777777;
 }
-.progressbar-link{
-  color:black;
+.progressbar-link:hover .progressbar-styles {
+  box-shadow: 5px 3px 6px #353535;
 }
-.progressbar-link:hover{
-  color:#3d217e; /*purp-darker*/
+
+.progressbar-link {
+  color: black;
+}
+.progressbar-link:hover {
+  color: black;
   text-decoration: none;
+  font-weight: bold;
 }
-.bg-custom-light{
+.bg-custom-light {
   background-color: white;
 }
 
-.bg-custom-light:hover{
-  background-color: rgba(206, 200, 200, 0.604);
+.bg-custom-light:hover {
+  background-color: rgba(241, 230, 250, 0.768);
+}
+
+/*Cards*/
+.card-container h1 {
+  font-family: 'Alex Brush', cursive;
+  font-size: 4.5rem;
+  text-shadow: 1px 1px 5px #7209b7;
+}
+.card-styles {
+  box-shadow: 6px 10px 10px #878787;
+}
+
+.card-styles:hover {
+  box-shadow: 6px 10px 10px #353535;
+  background-color: rgba(241, 230, 250, 0.768);
+}
+
+.card-button {
+  background-color: #3d217e; /*purp-darker*/
+}
+.card-button:hover {
+  background-color: #7209b7; /*pink-purp*/
+}
+
+.card-button a{
+  text-decoration: none;
+}
+
+.card-button a:hover{
+  color:white
 }
