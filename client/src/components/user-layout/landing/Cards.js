@@ -17,6 +17,7 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
+  NavLink,
 } from "reactstrap";
 // https://www.flaticon.com/
 import { Link } from "react-router-dom";
@@ -30,7 +31,8 @@ import Image6 from "./icons/care.svg";
 class Cards extends Component {
   state = {
     activeIndex: 0,
-    animating: false
+    animating: false,
+    cardCarousel: true,
   };
   handleResize = (e) => {
     this.setState({ windowWidth: window.innerWidth });
@@ -89,7 +91,7 @@ class Cards extends Component {
       title: "Household",
       subtitle: "Subtitle",
       text:
-        "Lorem ipsum dolor sit amet consectetur Tempora, error?",
+        "Lorem ipsum dolor sit amet consecteturdolor sit amet consectetur Tempora, error?",
       link: "/todo",
       image: Image5,
     },
@@ -99,7 +101,7 @@ class Cards extends Component {
       text: "Lorem, ipsum error?",
       link: "/todo",
       image: Image6,
-    }
+    },
   ];
   next = () => {
     if (this.state.animating) return;
@@ -123,8 +125,15 @@ class Cards extends Component {
     if (this.state.animating) return;
     this.setState({ activeIndex: newIndex });
   };
+
+  toggleCardCarousal = () => {
+    this.setState({
+      cardCarousel: !this.state.cardCarousel,
+    });
+  };
+
   render() {
-    const cardContents = this.cardValues.map(({ title, text, link, image }) => (
+    const cardItems = this.cardValues.map(({ title, text, link, image }) => (
       <Col lg="3" md="4" sm="6" className="text-center mb-5">
         <Card className="card-styles h-100">
           <CardBody className="d-flex flex-column">
@@ -141,20 +150,48 @@ class Cards extends Component {
       </Col>
     ));
 
+    const cardContent = <Row className="bg-light py-2 px-5">{cardItems}</Row>;
+
     const carouselItems = [];
-    for (var i = 0; i < cardContents.length; i += this.getNumCards()) {
-      const currItem = cardContents.slice(i, i + this.getNumCards());
+    for (var i = 0; i < cardItems.length; i += this.getNumCards()) {
+      const currItem = cardItems.slice(i, i + this.getNumCards());
       carouselItems.push(
         <CarouselItem
-        onExiting={() => this.setState({ animating: true })}
-        onExited={() => this.setState({ animating: false })}
-      >
-        <Row className="bg-light py-2 px-5">
-          {currItem}
-        </Row>
-      </CarouselItem>
+          onExiting={() => this.setState({ animating: true })}
+          onExited={() => this.setState({ animating: false })}
+        >
+          <Row className="bg-light py-2 px-5">{currItem}</Row>
+        </CarouselItem>
       );
     }
+
+    const carouselContent = (
+      <Carousel
+        activeIndex={this.state.activeIndex}
+        next={this.next}
+        previous={this.previous}
+      >
+        <CarouselIndicators
+          items={carouselItems.map((item, index) => ({
+            item: item,
+            src: index,
+          }))}
+          activeIndex={this.state.activeIndex}
+          onClickHandler={this.goToIndex}
+        />
+        {carouselItems}
+        <CarouselControl
+          direction="prev"
+          directionText="Previous"
+          onClickHandler={this.previous}
+        />
+        <CarouselControl
+          direction="next"
+          directionText="Next"
+          onClickHandler={this.next}
+        />
+      </Carousel>
+    );
 
     return (
       <Container className="text-center card-container my-3">
@@ -163,28 +200,16 @@ class Cards extends Component {
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus,
           quidem?
         </p>
-        <Carousel
-          activeIndex={this.state.activeIndex}
-          next={this.next}
-          previous={this.previous}
+        <div id="cards">
+          {this.state.cardCarousel ? carouselContent : cardContent}
+        </div>
+        <NavLink
+          className="btn btn-dark px-5 mx-auto mt-3 d-inline-block"
+          href="#cards"
+          onClick={this.toggleCardCarousal}
         >
-          <CarouselIndicators
-            items={carouselItems.map((item, index) => ({item:item, src:index}))}
-            activeIndex={this.state.activeIndex}
-            onClickHandler={this.goToIndex}
-          />
-          {carouselItems}
-          <CarouselControl
-            direction="prev"
-            directionText="Previous"
-            onClickHandler={this.previous}
-          />
-          <CarouselControl
-            direction="next"
-            directionText="Next"
-            onClickHandler={this.next}
-          />
-        </Carousel>
+          {this.state.cardCarousel ? "SEE ALL" : "SEE LESS"}
+        </NavLink>
       </Container>
     );
   }
