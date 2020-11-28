@@ -66,7 +66,7 @@ const items = [
 class CarouselComponent extends Component {
 	render() {
 		return (
-			<UncontrolledCarousel items={items} />
+			<UncontrolledCarousel items={items} className="carousel-component"/>
 		);
 	}
 }

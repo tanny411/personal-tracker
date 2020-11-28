@@ -22,18 +22,29 @@ img {
 }
 
 .landing-inner {
-  padding-top: 80px;
+  padding-top: 20vh;
 }
 
-@media screen and (max-width: 376px) {
+.landing-inner a{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+@media screen and (max-width: 767px) {
   .landing-inner {
-    padding-top: 0px;
+    padding-top: 5vh;
   }
 }
 
-@media screen and (max-width: 787px) {
-  .landing {
-    height: 100vh;
+@media screen and (max-width: 574px) {
+  .landing-inner h1 {
+    font-size: 4rem;
+  }
+  .landing-inner p {
+    font-size: medium;
+  }
+  .landing-inner a{
+    font-size: small;
   }
 }
 
@@ -143,33 +154,32 @@ img {
 
 /*Carousel*/
 
-.carousel-item {
+.carousel-component .carousel-item {
   background-color: black;
 }
-.carousel-item img {
+.carousel-component .carousel-item img {
   height: 60vh;
   opacity: 60%;
   background-color: black;
 }
 
-.carousel-caption {
+.carousel-component .carousel-caption {
   top: 30%;
   bottom: auto;
   display: block !important;
 }
-.carousel-caption h3 {
+.carousel-component .carousel-caption h3 {
   font-size: 4rem;
-  font-family: 'Alex Brush', cursive;
+  font-family: "Alex Brush", cursive;
   text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.892);
 }
 
-@media screen and (max-width: 400px) {
-  .carousel-caption p {
+@media screen and (max-width: 700px) {
+  .carousel-component .carousel-caption p {
     font-size: smaller;
   }
-  .carousel-caption h3 {
-    font-size: larger;
-    font-weight: bold;
+  .carousel-component .carousel-caption h3 {
+    font-size: 2.5rem;
   }
 }
 
@@ -201,10 +211,17 @@ img {
 
 /*Cards*/
 .card-container h1 {
-  font-family: 'Alex Brush', cursive;
+  font-family: "Alex Brush", cursive;
   font-size: 4.5rem;
   text-shadow: 1px 1px 5px #7209b7;
 }
+
+@media screen and (max-width: 700px) {
+  .card-container h1 {
+    font-size: 2.5rem;
+  }
+}
+
 .card-styles {
   box-shadow: 6px 10px 10px #878787;
 }
@@ -221,10 +238,31 @@ img {
   background-color: #7209b7; /*pink-purp*/
 }
 
-.card-button a{
+.card-button a {
   text-decoration: none;
 }
 
-.card-button a:hover{
-  color:white
+.card-button a:hover {
+  color: white;
+}
+
+.card-container .carousel-indicators li {
+  background-color: #353535;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+.card-container .carousel-control-next,
+.card-container .carousel-control-prev {
+  width: 1rem;
+  padding: 0px;
+  margin:0px;
+  background-color: #9e9e9e;
+}
+
+.card-container .carousel-control-next-icon,
+.card-container .carousel-control-prev-icon {
+  padding: 0px;
+  margin: 0px;
 }

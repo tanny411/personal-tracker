@@ -25,15 +25,15 @@ class Landing extends Component {
                   atque suscipit mollitia recusandae dolorum eligendi explicabo.
                 </p>
                 <hr />
-                <div className="d-flex flex-column align-items-center">
+                <div className="d-flex justify-content-around w-50 m-auto">
                   <div
-                    className="w-50 mt-4 btn bg-purp-light"
+                    className="w-50 btn bg-purp-light"
                     style={{ padding: "0px" }}
                   >
                     <RegisterModal />
                   </div>
                   <div
-                    className="w-50 mt-3 btn bg-purp-light"
+                    className="w-50 btn bg-purp-light ml-4"
                     style={{ padding: "0px" }}
                   >
                     <LoginModal />

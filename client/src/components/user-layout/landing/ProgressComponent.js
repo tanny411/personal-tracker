@@ -11,8 +11,8 @@ export default class ProgressComponent extends Component {
   ];
   render() {
     let progressBarsContent = this.progressBarsValues.map(
-      ({ value, color, text, link }) => (
-        <Link to={link} className="progressbar-link">
+      ({ value, color, text, link }, index) => (
+        <Link to={link} className="progressbar-link" key={index}>
           <Row className="py-3 bg-custom-light">
             <Col md="3">{text}</Col>
             <Col md="9" style={{ margin: "auto" }}>
