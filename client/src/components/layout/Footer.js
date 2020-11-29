@@ -26,7 +26,7 @@ export default () => {
                     <div className="col-md-3 mb-2 text-center">
                         <h6 className="text-uppercase font-weight-bold">Find me</h6>
                         <hr className="bg-purp-lightest mb-2 mt-0 d-inline-block mx-auto" style={{width: "75px", height: "2px"}}/>
-                        <div className="list-unstyled text-center mt-4">
+                        <div className="list-unstyled text-center mt-2">
                             <a href="https://github.com/tanny411">
                                 <i className="fab fa-github text-white mr-4 fa-lg"></i>
                             </a>
