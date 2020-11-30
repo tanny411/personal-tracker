@@ -35,10 +35,13 @@ class SettingsPage extends Component {
     checked: {
       todo: false,
       todoSummary: false,
+      todoProgress: false,
       expenses: false,
       expensesSummary: false,
+      expensesProgress: false,
       water: false,
       waterSummary: false,
+      waterProgress: false,
       household: false,
       householdSummary: false,
       health: false,
@@ -74,7 +77,7 @@ class SettingsPage extends Component {
     const { errors } = this.state;
     const navTabs = ["Account Settings", "Content Settings"];
     const summaryCheck = (name) => (
-      <Fragment>
+      <div>
         <Input
           name={name + "Summary"}
           type="checkbox"
@@ -82,23 +85,49 @@ class SettingsPage extends Component {
           defaultChecked={this.state.checked[name + "Summary"]}
         />{" "}
         Show this tracker in summary?
-      </Fragment>
+      </div>
+    );
+    const progressCheck = (name) => (
+      <div>
+        <Input
+          name={name + "Progress"}
+          type="checkbox"
+          onChange={this.handleCheck}
+          defaultChecked={this.state.checked[name + "Progress"]}
+        />{" "}
+        Show progress in summary?
+      </div>
     );
     const trackers = [
       {
         text: "Todo List",
         name: "todo",
-        content: <Fragment>{summaryCheck("todo")}</Fragment>,
+        content: (
+          <Fragment>
+            {summaryCheck("todo")}
+            {progressCheck("todo")}
+          </Fragment>
+        ),
       },
       {
         text: "Expenses",
         name: "expenses",
-        content: <Fragment>{summaryCheck("expenses")}</Fragment>,
+        content: (
+          <Fragment>
+            {summaryCheck("expenses")}
+            {progressCheck("expenses")}
+          </Fragment>
+        ),
       },
       {
         text: "Drinking Water",
         name: "water",
-        content: <Fragment>{summaryCheck("water")}</Fragment>,
+        content: (
+          <Fragment>
+            {summaryCheck("water")}
+            {progressCheck("water")}
+          </Fragment>
+        ),
       },
       {
         text: "Household items",
