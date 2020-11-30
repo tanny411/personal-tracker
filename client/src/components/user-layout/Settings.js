@@ -21,6 +21,7 @@ import {
   ListGroupItem,
   CardBody,
   Collapse,
+  Form,
 } from "reactstrap";
 import classnames from "classnames";
 import FieldGroup from "../common/FieldGroup";
@@ -32,6 +33,14 @@ class SettingsPage extends Component {
     name: "",
     password: "",
     password2: "",
+    goals: [
+      { goal: "Aysha", desc: "Its a goal I have of my life lol!" },
+      { goal: "Kamal", desc: "Its a goal I have of my life lol!" },
+      { goal: "Tanny", desc: "Its a goal I have of my life lol!" },
+      { goal: "Sshit", desc: "Its a goal I have of my life lol!" },
+      { goal: "Ggoat", desc: "Its a goal I have of my life lol!" },
+      { goal: "Rreal", desc: "Its a goal I have of my life lol!" },
+    ],
     checked: {
       todo: false,
       todoSummary: false,
@@ -72,6 +81,9 @@ class SettingsPage extends Component {
         [e.target.name]: !this.state.checked[e.target.name],
       },
     });
+  };
+  addGoal = (e) => {
+    e.preventDefault();
   };
   render() {
     const { errors } = this.state;
@@ -245,17 +257,47 @@ class SettingsPage extends Component {
               />
             </TabPane>
             <TabPane tabId="1">
-              <FieldGroup
-                label="Add Your Goals"
-                name="goal"
-                id="goal"
-                placeholder="Add Goal"
-                info="Remind yourself everyday of things you need to focus on.
+              <Form onSubmit={this.addGoal} className="bg-light p-4">
+                <FieldGroup
+                  label="Add New Goal"
+                  name="goal"
+                  id="goal"
+                  placeholder="Add Goal..."
+                  info="Remind yourself everyday of things you need to focus on.
                 Don't get distracted by the present, keep your aim clear!
                 These will appear on your dashboard as slideshow."
-                onChange={this.onChange}
-              />
-              <div>
+                  onChange={this.onChange}
+                />
+                <FieldGroup
+                  label="Add Goal Description"
+                  name="goalDesc"
+                  id="goalDesc"
+                  placeholder="Describe your goal..."
+                  info="Elaborate your goal a bit. 
+                  These will appear on your dashboard as slideshow subtext."
+                  onChange={this.onChange}
+                />
+                <Button className="w-25 bg-pink-purp opacity-2">
+                  Add Goal
+                </Button>
+              </Form>
+              <div className="goals-content mt-3">
+                Your Goals:
+                <ListGroup className="mt-2">
+                  {this.state.goals.map(({ goal, desc }) => (
+                    <ListGroupItem>
+                      <div className="float-left">
+                        {goal}
+                        <small className="d-block">{desc}</small>
+                      </div>
+                      <Button className="float-right" color="danger" size="sm">
+                        <i className="fa fa-times"></i>
+                      </Button>
+                    </ListGroupItem>
+                  ))}
+                </ListGroup>
+              </div>
+              <div className="tracker-settings mt-3">
                 Choose what you want to track:
                 <FormGroup check className="mt-2 p-0">
                   <ListGroup>{listContent}</ListGroup>

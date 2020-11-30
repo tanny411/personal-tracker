@@ -282,3 +282,7 @@ img {
   border-radius: 50%;
   cursor: pointer;
 }
+
+.settings li:hover {
+  background-color: #7109b72a;
+}
