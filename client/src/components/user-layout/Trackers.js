@@ -23,8 +23,8 @@ class Trackers extends Component {
   ];
   render() {
     const { dropdown } = this.state;
-    const dropdownItems = this.trackers.map(({ name, link }, index) => (
-      <DropdownItem key={index}>
+    const dropdownItems = this.trackers.map(({ name, link }, key) => (
+      <DropdownItem key={key}>
         <Link to={link} className="purp-darker">
           {name}
         </Link>
@@ -32,7 +32,7 @@ class Trackers extends Component {
     ));
     return (
       <Fragment>
-        <Dropdown nav isOpen={dropdown} toggle={this.toggle}>
+        <Dropdown isOpen={dropdown} toggle={this.toggle}>
           <DropdownToggle nav caret>
             Trackers
           </DropdownToggle>

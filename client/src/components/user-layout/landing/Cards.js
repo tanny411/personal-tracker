@@ -133,22 +133,24 @@ class Cards extends Component {
   };
 
   render() {
-    const cardItems = this.cardValues.map(({ title, text, link, image }) => (
-      <Col lg="3" md="4" sm="6" className="text-center mb-5">
-        <Card className="card-styles h-100">
-          <CardBody className="d-flex flex-column">
-            <CardImg top height="50px" src={image} alt="Card Image" />
-            <CardTitle tag="h5" className="my-3">
-              {title}
-            </CardTitle>
-            <CardText>{text}</CardText>
-            <Link to={link} className="btn mt-auto card-button text-white">
-              View
-            </Link>
-          </CardBody>
-        </Card>
-      </Col>
-    ));
+    const cardItems = this.cardValues.map(
+      ({ title, text, link, image }, key) => (
+        <Col lg="3" md="4" sm="6" className="text-center mb-5" key={key}>
+          <Card className="card-styles h-100">
+            <CardBody className="d-flex flex-column">
+              <CardImg top height="50px" src={image} alt="Card Image" />
+              <CardTitle tag="h5" className="my-3">
+                {title}
+              </CardTitle>
+              <CardText>{text}</CardText>
+              <Link to={link} className="btn mt-auto card-button text-white">
+                View
+              </Link>
+            </CardBody>
+          </Card>
+        </Col>
+      )
+    );
 
     const cardContent = <Row className="bg-light py-2 px-5">{cardItems}</Row>;
 
@@ -159,6 +161,7 @@ class Cards extends Component {
         <CarouselItem
           onExiting={() => this.setState({ animating: true })}
           onExited={() => this.setState({ animating: false })}
+          key={i}
         >
           <Row className="bg-light py-2 px-5">{currItem}</Row>
         </CarouselItem>

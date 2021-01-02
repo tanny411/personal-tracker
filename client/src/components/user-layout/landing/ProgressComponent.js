@@ -12,13 +12,13 @@ export default class ProgressComponent extends Component {
   ];
   render() {
     let progressBarsContent = this.progressBarsValues.map(
-      ({ value, color, text, link }, index) => (
+      ({ value, color, text, link }, key) => (
         <ProgressBar
           value={value}
           color={color}
           text={text}
           link={link}
-          index={index}
+          key={key}
         />
       )
     );
