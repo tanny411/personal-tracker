@@ -47,10 +47,7 @@ class ItemModal extends Component {
   render() {
     return (
       <div>
-        <Button
-          className="item-button"
-          onClick={this.toggle}
-        >
+        <Button className="item-button" onClick={this.toggle}>
           Add Item
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

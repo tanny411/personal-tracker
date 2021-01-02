@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Progress, Container, Row, Col } from "reactstrap";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+import ProgressBar from "../../common/ProgressBar";
 
 export default class ProgressComponent extends Component {
   progressBarsValues = [
@@ -12,21 +13,13 @@ export default class ProgressComponent extends Component {
   render() {
     let progressBarsContent = this.progressBarsValues.map(
       ({ value, color, text, link }, index) => (
-        <Link to={link} className="progressbar-link" key={index}>
-          <Row className="py-3 bg-custom-light">
-            <Col md="3">{text}</Col>
-            <Col md="9" style={{ margin: "auto" }}>
-              <Progress
-                striped
-                value={value}
-                color={color}
-                className="progressbar-styles"
-              >
-                {value}%
-              </Progress>
-            </Col>
-          </Row>
-        </Link>
+        <ProgressBar
+          value={value}
+          color={color}
+          text={text}
+          link={link}
+          index={index}
+        />
       )
     );
     return <Container className="my-3">{progressBarsContent}</Container>;
