@@ -212,7 +212,7 @@ img {
   font-weight: bold;
 }
 .bg-custom-light {
-  background-color: white;
+  /* background-color: white; */
 }
 
 .bg-custom-light:hover {
@@ -220,14 +220,20 @@ img {
 }
 
 /*Cards*/
-.card-container h1 {
+.cursive {
   font-family: "Alex Brush", cursive;
-  font-size: 4.5rem;
+}
+
+h1.cursive {
   text-shadow: 1px 1px 5px #7209b7;
 }
 
+.card-container h1.cursive {
+  font-size: 4.5rem;
+}
+
 @media screen and (max-width: 700px) {
-  .card-container h1 {
+  .card-container h1.cursive {
     font-size: 2.5rem;
   }
 }

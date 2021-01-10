@@ -198,7 +198,7 @@ class Cards extends Component {
 
     return (
       <Container className="text-center card-container my-3">
-        <h1>Reach your goals, track activities</h1>
+        <h1 className="cursive">Reach your goals, track activities</h1>
         <p className="lead">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus,
           quidem?
