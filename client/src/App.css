@@ -286,3 +286,8 @@ img {
 .settings li:hover {
   background-color: #7109b72a;
 }
+
+/*Expenses page*/
+.edit-icon {
+  opacity: 50%;
+}
