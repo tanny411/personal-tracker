@@ -25,6 +25,33 @@ export default class Expenses extends Component {
     subValue: "",
     curValue: "",
     errors: {},
+
+    progressBarsValues: [
+      {
+        maxValue: 1000,
+        curValue: 400,
+        value: 10,
+        color: "info",
+        text: "Education",
+        desc: "How much have you saved in this category?",
+      },
+      {
+        maxValue: 2000,
+        curValue: 500,
+        value: 90,
+        color: "warning",
+        text: "Donate",
+        desc: "How much have you saved in this category?",
+      },
+      {
+        maxValue: 3000,
+        curValue: 600,
+        value: 100,
+        color: "danger",
+        text: "Travels",
+        desc: "How much have you saved in this category?",
+      },
+    ],
   };
 
   toggleCollapse = () => {
@@ -34,11 +61,32 @@ export default class Expenses extends Component {
   };
 
   toggleModal = (e) => {
-    let titletxt = e.target.id;
+    let modalTitle = "";
+    let title = "";
+    let maxValue = "";
+    let curValue = "";
+    let desc = "";
+
+    // To set values only when modal is being 'opened'
+    if (e.target.id) {
+      modalTitle = e.target.id;
+      if (modalTitle !== "Add Category") {
+        let item = this.state.progressBarsValues[modalTitle];
+        modalTitle = item.text;
+        title = item.text;
+        maxValue = item.maxValue;
+        curValue = item.curValue;
+        desc = item.desc;
+      }
+    }
 
     this.setState({
       modal: !this.state.modal,
-      modalTitle: titletxt,
+      modalTitle,
+      title,
+      desc,
+      curValue,
+      maxValue,
     });
   };
 
@@ -47,43 +95,29 @@ export default class Expenses extends Component {
   };
 
   mainProgressBar = { value: 50, color: "success", text: "Money Saved" };
-  progressBarsValues = [
-    {
-      value: 10,
-      color: "info",
-      text: "Education",
-      subtext: "How much have you saved in this category?",
-    },
-    {
-      value: 90,
-      color: "warning",
-      text: "Donate",
-      subtext: "How much have you saved in this category?",
-    },
-    {
-      value: 100,
-      color: "danger",
-      text: "Travels",
-      subtext: "How much have you saved in this category?",
-    },
-  ];
 
   render() {
-    const { collapse, modal, errors, modalTitle } = this.state;
+    const {
+      collapse,
+      modal,
+      errors,
+      modalTitle,
+      progressBarsValues,
+    } = this.state;
     const { value, color, text } = this.mainProgressBar;
-    let collapseItems = this.progressBarsValues.map(
-      ({ value, color, text, subtext }, index) => (
+    let collapseItems = progressBarsValues.map(
+      ({ value, color, text, desc }, index) => (
         <div>
           <i
             className="fas fa-edit dark float-left mt-3 mr-3 edit-icon cursor-pointer"
-            id={text}
+            id={index}
             onClick={this.toggleModal}
           ></i>
           <ProgressBar
             value={value}
             color={color}
             text={text}
-            subtext={subtext}
+            subtext={desc}
             key={index}
           />
         </div>
@@ -98,7 +132,8 @@ export default class Expenses extends Component {
               label="Title"
               name="title"
               id="title"
-              placeholder="Title of your savings goal"
+              value={this.state.title}
+              info="Title of your savings goal"
               error={errors.title}
               onChange={this.onChange}
             />
@@ -106,7 +141,8 @@ export default class Expenses extends Component {
               label="Description"
               name="desc"
               id="desc"
-              placeholder="Description of your savings goal"
+              value={this.state.desc}
+              info="Description of your savings goal"
               error={errors.desc}
               onChange={this.onChange}
             />
@@ -114,8 +150,8 @@ export default class Expenses extends Component {
               label="Total Amount"
               name="maxValue"
               id="maxValue"
+              value={this.state.maxValue}
               type="number"
-              placeholder="Total amount you want to save"
               info="Total amount you want to save"
               error={errors.maxValue}
               onChange={this.onChange}
@@ -124,32 +160,35 @@ export default class Expenses extends Component {
               label="Saved"
               name="curValue"
               id="curValue"
+              value={this.state.curValue}
               type="number"
-              placeholder="Amount of money you have saved so far"
               info="Amount of money you have saved so far"
               error={errors.curValue}
               onChange={this.onChange}
+              disabled={modalTitle !== "Add Category" ? "disabled" : ""}
             />
-            <FieldGroup
-              label="Add Amount"
-              name="addValue"
-              id="addValue"
-              type="number"
-              placeholder="Saved some more? Add here"
-              info="Saved some more? Add here"
-              error={errors.addValue}
-              onChange={this.onChange}
-            />
-            <FieldGroup
-              label="Reduce Amount"
-              name="subValue"
-              id="subValue"
-              type="number"
-              placeholder="Ohno! You used up savings? Subtract here"
-              info="Ohno! You used up savings? Subtract here"
-              error={errors.subValue}
-              onChange={this.onChange}
-            />
+            {modalTitle !== "Add Category" ? (
+              <Fragment>
+                <FieldGroup
+                  label="Add Amount"
+                  name="addValue"
+                  id="addValue"
+                  type="number"
+                  placeholder="Saved some more? Add here"
+                  error={errors.addValue}
+                  onChange={this.onChange}
+                />
+                <FieldGroup
+                  label="Reduce Amount"
+                  name="subValue"
+                  id="subValue"
+                  type="number"
+                  placeholder="Ohno! You used up savings? Subtract here"
+                  error={errors.subValue}
+                  onChange={this.onChange}
+                />
+              </Fragment>
+            ) : null}
             <Button className="bg-success mt-4" block>
               Save
             </Button>

@@ -15,6 +15,7 @@ const FieldGroup = ({
   onChange,
   info,
   disabled,
+  value,
   options,
 }) => {
   return (
@@ -24,6 +25,7 @@ const FieldGroup = ({
         type={type}
         name={name}
         id={id}
+        value={value}
         placeholder={placeholder}
         className={classnames(className, {
           "is-invalid": error,
@@ -40,6 +42,7 @@ const FieldGroup = ({
 FieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
+  value: PropTypes.string,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   info: PropTypes.string,
