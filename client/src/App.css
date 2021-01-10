@@ -100,34 +100,44 @@ img {
 /*PURPLE*/
 .bg-purp-darker {
   background-color: #3d217e;
+  border: None;
 }
 .bg-purp-dark {
   background-color: #3c3797;
+  border: None;
 }
 .bg-purp-light {
   background-color: #3b56ce;
+  border: None;
 }
 .bg-purp-lightest {
   background-color: #488bef;
+  border: None;
 }
 .bg-purp-light:hover {
   background-color: #488bef;
+  border: None;
 }
 /*PINK*/
 .bg-pink-purp {
   background-color: #7209b7;
+  border: None;
 }
 .bg-pink-purp:hover {
   background-color: #b5179e;
+  border: None;
 }
 .bg-pink-dark {
   background-color: #b5179e;
+  border: None;
 }
 .bg-pink-dark:hover {
   background-color: #f72585;
+  border: None;
 }
 .bg-pink-light {
   background-color: #f72585;
+  border: None;
 }
 
 .purp-darker {
@@ -290,4 +300,8 @@ img {
 /*Expenses page*/
 .edit-icon {
   opacity: 50%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

@@ -17,6 +17,7 @@ export default class Expenses extends Component {
     modal: false,
 
     // All purpose modal values for progress bars
+    modalTitle: "",
     title: "",
     desc: "",
     maxValue: "",
@@ -32,9 +33,12 @@ export default class Expenses extends Component {
     });
   };
 
-  toggleModal = () => {
+  toggleModal = (e) => {
+    let titletxt = e.target.id;
+
     this.setState({
       modal: !this.state.modal,
+      modalTitle: titletxt,
     });
   };
 
@@ -42,7 +46,7 @@ export default class Expenses extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  mainProgressBar = { value: 50, color: "success", text: "Money saved" };
+  mainProgressBar = { value: 50, color: "success", text: "Money Saved" };
   progressBarsValues = [
     {
       value: 10,
@@ -65,13 +69,14 @@ export default class Expenses extends Component {
   ];
 
   render() {
-    const { collapse, modal, errors } = this.state;
+    const { collapse, modal, errors, modalTitle } = this.state;
     const { value, color, text } = this.mainProgressBar;
     let collapseItems = this.progressBarsValues.map(
       ({ value, color, text, subtext }, index) => (
         <div>
           <i
-            class="fas fa-edit dark float-left pt-3 pr-3 edit-icon"
+            className="fas fa-edit dark float-left mt-3 mr-3 edit-icon cursor-pointer"
+            id={text}
             onClick={this.toggleModal}
           ></i>
           <ProgressBar
@@ -86,7 +91,7 @@ export default class Expenses extends Component {
     );
     let editModal = (
       <Modal isOpen={modal} toggle={this.toggleModal}>
-        <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+        <ModalHeader toggle={this.toggleModal}>{modalTitle}</ModalHeader>
         <ModalBody>
           <Form onSubmit={this.onSubmit}>
             <FieldGroup
@@ -145,12 +150,8 @@ export default class Expenses extends Component {
               error={errors.subValue}
               onChange={this.onChange}
             />
-            <Button
-              className="bg-pink-purp"
-              style={{ marginTop: "2rem" }}
-              block
-            >
-              Login
+            <Button className="bg-success mt-4" block>
+              Save
             </Button>
           </Form>
         </ModalBody>
@@ -165,6 +166,13 @@ export default class Expenses extends Component {
           customClickEvent={this.toggleCollapse}
         />
         <Collapse className="w-75 m-auto" isOpen={collapse}>
+          <Button
+            className="my-3 bg-pink-purp"
+            id="Add Category"
+            onClick={this.toggleModal}
+          >
+            Add Category
+          </Button>
           {collapseItems}
         </Collapse>
         {editModal}
