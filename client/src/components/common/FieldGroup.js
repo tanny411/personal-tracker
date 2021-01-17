@@ -11,6 +11,7 @@ const FieldGroup = ({
   id,
   placeholder,
   className,
+  labelClassName,
   error,
   onChange,
   info,
@@ -20,7 +21,9 @@ const FieldGroup = ({
 }) => {
   return (
     <FormGroup>
-      <Label for={id}>{label}</Label>
+      <Label for={id} className={labelClassName}>
+        {label}
+      </Label>
       <Input
         type={type}
         name={name}
@@ -32,7 +35,11 @@ const FieldGroup = ({
         })}
         onChange={onChange}
         disabled={disabled}
-      ></Input>
+      >
+        {type === "select"
+          ? options.map((optionValue) => <option>{optionValue}</option>)
+          : null}
+      </Input>
       {info && <FormText color="muted">{info}</FormText>}
       {error && <div className="invalid-feedback">{error}</div>}
     </FormGroup>
@@ -50,6 +57,7 @@ FieldGroup.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
+  labelClassName: PropTypes.string,
   disabled: PropTypes.string,
   options: conditionalPropType(
     (props, propName, componentName) =>
