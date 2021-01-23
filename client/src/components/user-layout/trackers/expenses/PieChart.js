@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -8,7 +7,6 @@ am4core.useTheme(am4themes_animated);
 
 export default class PieChart extends Component {
   state = {
-    chart: null,
     pieData: [
       {
         country: "Litfffffffffffff",
@@ -66,10 +64,11 @@ export default class PieChart extends Component {
         ],
       },
     ],
+    chart: null,
   };
 
   pieChart = () => {
-    var container = am4core.create("chartdiv", am4core.Container);
+    var container = am4core.create("piechart", am4core.Container);
     container.width = am4core.percent(100);
     container.height = am4core.percent(100);
     container.layout = "horizontal";
@@ -77,7 +76,14 @@ export default class PieChart extends Component {
     var chart = container.createChild(am4charts.PieChart);
     chart.align = "left";
 
-    //Responsive
+    // Title
+    var title = chart.titles.create();
+    title.text = "Your expense categories";
+    title.fontSize = 25;
+    title.marginBottom = 30;
+    title.marginTop = 30;
+
+    // Responsive
     chart.responsive.enabled = true;
     chart.responsive.rules.push({
       relevant: am4core.ResponsiveBreakpoints.widthM,
@@ -260,11 +266,13 @@ export default class PieChart extends Component {
     this.setState({ chart: this.pieChart() });
   }
 
+  componentWillUnmount() {
+    if (this.state.chart) {
+      this.state.chart.dispose();
+    }
+  }
+
   render() {
-    return (
-      <Container>
-        <div id="chartdiv"></div>
-      </Container>
-    );
+    return <div id="piechart" className="chart"></div>;
   }
 }
