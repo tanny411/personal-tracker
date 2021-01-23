@@ -8,6 +8,7 @@ am4core.useTheme(am4themes_animated);
 
 export default class PieChart extends Component {
   state = {
+    chart: null,
     pieData: [
       {
         country: "Litfffffffffffff",
@@ -66,6 +67,7 @@ export default class PieChart extends Component {
       },
     ],
   };
+
   pieChart = () => {
     var container = am4core.create("chartdiv", am4core.Container);
     container.width = am4core.percent(100);
@@ -74,6 +76,30 @@ export default class PieChart extends Component {
 
     var chart = container.createChild(am4charts.PieChart);
     chart.align = "left";
+
+    //Responsive
+    chart.responsive.enabled = true;
+    chart.responsive.rules.push({
+      relevant: am4core.ResponsiveBreakpoints.widthM,
+      state: function (target, stateId) {
+        if (target instanceof am4charts.PieSeries) {
+          var state = target.states.create(stateId);
+
+          var labelState = target.labels.template.states.create(stateId);
+          labelState.properties.disabled = true;
+
+          var tickState = target.ticks.template.states.create(stateId);
+          tickState.properties.disabled = true;
+          return state;
+        }
+
+        return null;
+      },
+    });
+
+    //Ticks and labels (/*RESPONSIVE*/)
+    // pieSeries.labels.template.disabled = false;
+    // pieSeries.ticks.template.disabled = false;
 
     // Add data
     chart.data = this.state.pieData;
@@ -90,10 +116,6 @@ export default class PieChart extends Component {
     var pieSeries = chart.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "litres";
     pieSeries.dataFields.category = "country";
-
-    //Ticks and labels (/*MAKE RESPONSIVE*/)
-    pieSeries.labels.template.disabled = false;
-    pieSeries.ticks.template.disabled = false;
 
     //Tighten ticks and tables
     pieSeries.labels.template.paddingTop = 0;
@@ -118,7 +140,7 @@ export default class PieChart extends Component {
     function closeOtherSlices(ev) {
       var series = ev.target.dataItem.component;
       series.slices.each(function (item) {
-        if (item.isActive && item != ev.target) {
+        if (item.isActive && item !== ev.target) {
           item.isActive = false;
         }
       });
@@ -230,10 +252,12 @@ export default class PieChart extends Component {
         selectSlice(pieSeries.dataItems.getIndex(0));
       }, 1000);
     });
+
+    return container;
   };
 
   componentDidMount() {
-    this.pieChart();
+    this.setState({ chart: this.pieChart() });
   }
 
   render() {

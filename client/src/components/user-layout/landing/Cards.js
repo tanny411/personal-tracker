@@ -1,22 +1,17 @@
 import React, { Component, Fragment } from "react";
 import {
   Card,
-  Button,
   CardImg,
   CardTitle,
   CardText,
-  CardDeck,
-  CardSubtitle,
   CardBody,
   Container,
   Row,
   Col,
-  CardFooter,
   Carousel,
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
   NavLink,
 } from "reactstrap";
 // https://www.flaticon.com/
@@ -33,80 +28,83 @@ class Cards extends Component {
     activeIndex: 0,
     animating: false,
     cardCarousel: true,
+    cardValues: [
+      {
+        title: "Expenses",
+        subtitle: "Subtitle",
+        text: 4,
+        link: "/todo",
+        image: Image1,
+      },
+      {
+        title: "Water",
+        subtitle: "Subtitle",
+        text:
+          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, error?",
+        link: "/todo",
+        image: Image2,
+      },
+      {
+        title: "Time",
+        subtitle: "Subtitle",
+        text:
+          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, error?",
+        link: "/todo",
+        image: Image3,
+      },
+      {
+        title: "Todo",
+        subtitle: "Subtitle",
+        text:
+          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, error?",
+        link: "/todo",
+        image: Image4,
+      },
+      {
+        title: "Household",
+        subtitle: "Subtitle",
+        text:
+          "Lorem ipsum dolor sit amet consecteturdolor sit amet consectetur Tempora, error?",
+        link: "/todo",
+        image: Image5,
+      },
+      {
+        title: "Health",
+        subtitle: "Subtitle",
+        text: "Lorem, ipsum error?",
+        link: "/todo",
+        image: Image6,
+      },
+    ],
+    windowWidth: window.innerWidth,
+    numRows: 0,
+    numCards: 4,
   };
+
   handleResize = (e) => {
-    this.setState({ windowWidth: window.innerWidth });
+    let width = window.innerWidth;
+
+    let numCards = 4;
+    if (width < 576) numCards = 1;
+    else if (width < 768) numCards = 2;
+    else if (width < 992) numCards = 3;
+
+    this.setState({
+      windowWidth: width,
+      numCards,
+      numRows: Math.ceil(this.state.cardValues.length / numCards),
+    });
   };
 
   componentDidMount() {
-    window.addEventListener("resize", this.handleResize);
+    this.handleResize(); //set initial states
+    window.addEventListener("resize", this.handleResize); //change states for later resize
   }
 
-  getWidth = () => this.state.windowWidth;
-
-  getNumCards = () => {
-    // get number of cards per row
-    const width = this.state.windowWidth;
-    if (width < 576) return 1;
-    else if (width < 768) return 2;
-    else if (width < 992) return 3;
-    else return 4;
-  };
-
-  getNumRows = () => Math.ceil(this.cardValues.length / this.getNumCards());
-
-  cardValues = [
-    {
-      title: "Expenses",
-      subtitle: "Subtitle",
-      text: 4,
-      link: "/todo",
-      image: Image1,
-    },
-    {
-      title: "Water",
-      subtitle: "Subtitle",
-      text:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, error?",
-      link: "/todo",
-      image: Image2,
-    },
-    {
-      title: "Time",
-      subtitle: "Subtitle",
-      text:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, error?",
-      link: "/todo",
-      image: Image3,
-    },
-    {
-      title: "Todo",
-      subtitle: "Subtitle",
-      text:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, error?",
-      link: "/todo",
-      image: Image4,
-    },
-    {
-      title: "Household",
-      subtitle: "Subtitle",
-      text:
-        "Lorem ipsum dolor sit amet consecteturdolor sit amet consectetur Tempora, error?",
-      link: "/todo",
-      image: Image5,
-    },
-    {
-      title: "Health",
-      subtitle: "Subtitle",
-      text: "Lorem, ipsum error?",
-      link: "/todo",
-      image: Image6,
-    },
-  ];
   next = () => {
     if (this.state.animating) return;
     const nextIndex =
-      this.state.activeIndex === this.getNumRows() - 1
+      this.state.activeIndex === this.state.numRows - 1
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
@@ -116,7 +114,7 @@ class Cards extends Component {
     if (this.state.animating) return;
     const nextIndex =
       this.state.activeIndex === 0
-        ? this.getNumRows() - 1
+        ? this.state.numRows - 1
         : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   };
@@ -133,7 +131,7 @@ class Cards extends Component {
   };
 
   render() {
-    const cardItems = this.cardValues.map(
+    const cardItems = this.state.cardValues.map(
       ({ title, text, link, image }, key) => (
         <Col lg="3" md="4" sm="6" className="text-center mb-5" key={key}>
           <Card className="card-styles h-100">
@@ -155,8 +153,8 @@ class Cards extends Component {
     const cardContent = <Row className="bg-light py-2 px-5">{cardItems}</Row>;
 
     const carouselItems = [];
-    for (var i = 0; i < cardItems.length; i += this.getNumCards()) {
-      const currItem = cardItems.slice(i, i + this.getNumCards());
+    for (var i = 0; i < cardItems.length; i += this.state.numCards) {
+      const currItem = cardItems.slice(i, i + this.state.numCards);
       carouselItems.push(
         <CarouselItem
           onExiting={() => this.setState({ animating: true })}
