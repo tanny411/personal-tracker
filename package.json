@@ -15,6 +15,7 @@
   "author": "Aisha Khatun",
   "license": "MIT",
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.13",
     "bcryptjs": "^2.4.3",
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
