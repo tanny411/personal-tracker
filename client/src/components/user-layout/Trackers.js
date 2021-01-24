@@ -24,10 +24,8 @@ class Trackers extends Component {
   render() {
     const { dropdown } = this.state;
     const dropdownItems = this.trackers.map(({ name, link }, key) => (
-      <DropdownItem key={key}>
-        <Link to={link} className="purp-darker">
-          {name}
-        </Link>
+      <DropdownItem key={key} tag={Link} to={link} className="purp-darker">
+        {name}
       </DropdownItem>
     ));
     return (

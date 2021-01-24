@@ -168,6 +168,19 @@ img {
   justify-content: space-between;
 }
 
+/*User landing*/
+li.nav-item .dropdown.show .dropdown-menu.show a.dropdown-item:hover,
+li.nav-item .dropdown.show .dropdown-menu.show a.dropdown-item:focus {
+  background-color: #7109b72f !important; /*pink purp halka*/
+  outline: 0;
+}
+
+li.nav-item .dropdown.show .dropdown-menu.show a.dropdown-item:active {
+  background-color: rgba(113, 9, 183, 0.316) !important;
+  /*pink purp halka -- darker*/
+  outline: 0;
+}
+
 /*Carousel*/
 
 .carousel-component .carousel-item {
