@@ -18,20 +18,30 @@ import date2str from "../../../common/date2str";
 export default class AddExpense extends Component {
   state = {
     errors: {},
-    modal: true,
+    modal: false,
     amount: "",
     date: date2str(new Date()),
     incexp: "",
     categories: [
-      { value: "R", label: "Red" },
-      { value: "G", label: "Green" },
-      { value: "B", label: "Blue" },
+      { value: "Red", label: "Red" },
+      { value: "Green", label: "Green" },
+      { value: "Blue", label: "Blue" },
     ],
-    subCategories: [
-      { value: "R", label: "Red" },
-      { value: "G", label: "Green" },
-      { value: "B", label: "Blue" },
-    ],
+    subCategory: [],
+    subCategories: {
+      Red: [
+        { value: "Lightred", label: "Lightred" },
+        { value: "Darkred", label: "Darkred" },
+      ],
+      Green: [
+        { value: "lightgreen", label: "lightgreen" },
+        { value: "darkgreen", label: "darkgreen" },
+      ],
+      Blue: [
+        { value: "lightblue", label: "lightblue" },
+        { value: "darkblue", label: "darkblue" },
+      ],
+    },
     cat: null,
     subCat: null,
   };
@@ -49,8 +59,16 @@ export default class AddExpense extends Component {
 
   selectChange = (newValue, actionMeta) => {
     this.setState({ [actionMeta.name]: newValue });
-    console.log(actionMeta);
-    console.warn(actionMeta.action === "create-option");
+
+    if (actionMeta.action === "create-option") {
+      //nothing yet
+    }
+
+    //set subcategory
+    if (actionMeta.name === "cat") {
+      this.setState({ subCategory: this.state.subCategories[newValue.value] });
+      this.setState({ subCat: null });
+    }
   };
 
   render() {
@@ -117,7 +135,7 @@ export default class AddExpense extends Component {
                 isClearable
                 isSearchable
                 onChange={this.selectChange}
-                options={this.state.subCategories}
+                options={this.state.subCategory}
                 name="subCat"
                 value={this.state.subCat}
               />
