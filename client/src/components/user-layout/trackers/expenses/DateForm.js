@@ -1,18 +1,11 @@
 import React, { Component } from "react";
-import { Button, Container, Form } from "reactstrap";
+import { Button, Form } from "reactstrap";
 import FieldGroup from "../../../common/FieldGroup";
+import date2str from "../../../common/date2str";
 
 export default class DateForm extends Component {
-  date2str = (date) => {
-    let year = date.getFullYear();
-    let month = String(date.getMonth() + 1).padStart(2, "0");
-    let day = String(date.getDate()).padStart(2, "0");
-    let str = year + "-" + month + "-" + day;
-    return str;
-  };
-
   today = new Date();
-  todayStr = this.date2str(this.today);
+  todayStr = date2str(this.today);
 
   state = {
     errors: {},
@@ -39,7 +32,7 @@ export default class DateForm extends Component {
         to = this.todayStr;
         break;
       case "Last week":
-        from = this.date2str(
+        from = date2str(
           new Date(
             this.today.getFullYear(),
             this.today.getMonth(),
@@ -49,7 +42,7 @@ export default class DateForm extends Component {
         to = this.todayStr;
         break;
       case "Last month":
-        from = this.date2str(
+        from = date2str(
           new Date(
             this.today.getFullYear(),
             this.today.getMonth() - 1,
@@ -59,7 +52,7 @@ export default class DateForm extends Component {
         to = this.todayStr;
         break;
       case "Last year":
-        from = this.date2str(
+        from = date2str(
           new Date(
             this.today.getFullYear() - 1,
             this.today.getMonth(),
@@ -90,7 +83,7 @@ export default class DateForm extends Component {
     ];
 
     return (
-      <Form onSubmit={this.onSubmitDate} className="form-inline my-3">
+      <Form onSubmit={this.onSubmitDate} className="form-inline">
         <FieldGroup
           label="From:"
           type="date"
@@ -114,7 +107,6 @@ export default class DateForm extends Component {
           onChange={this.onChange}
         />
         <FieldGroup
-          label=""
           type="select"
           name="options"
           id="options"

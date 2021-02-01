@@ -21,9 +21,11 @@ const FieldGroup = ({
 }) => {
   return (
     <FormGroup>
-      <Label for={id} className={labelClassName}>
-        {label}
-      </Label>
+      {label ? (
+        <Label for={id} className={labelClassName}>
+          {label}
+        </Label>
+      ) : null}
       <Input
         type={type}
         name={name}
@@ -50,7 +52,7 @@ FieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   id: PropTypes.string.isRequired,
   info: PropTypes.string,
   error: PropTypes.string,

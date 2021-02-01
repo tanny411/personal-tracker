@@ -100,48 +100,48 @@ img {
 /*PURPLE*/
 .bg-purp-darker {
   background-color: #3d217e;
-  border: None;
+  border: none;
 }
 .bg-purp-dark {
   background-color: #3c3797;
-  border: None;
+  border: none;
 }
 .bg-purp-light {
   background-color: #3b56ce;
-  border: None;
+  border: none;
 }
 .bg-purp-lightest {
   background-color: #488bef;
-  border: None;
+  border: none;
 }
 .bg-purp-light:hover {
   background-color: #488bef;
-  border: None;
+  border: none;
 }
 /*PINK*/
 .bg-pink-purp {
   background-color: #7209b7;
-  border: None;
+  border: none;
 }
 .bg-pink-purp:hover,
 .bg-pink-purp:focus,
 .bg-pink-purp:active {
-  background-color: #b5179e;
-  border: None;
+  background-color: #b5179e !important;
+  border: none;
 }
 .bg-pink-dark {
   background-color: #b5179e;
-  border: None;
+  border: none;
 }
 .bg-pink-dark:hover,
 .bg-pink-dark:focus,
 .bg-pink-dark:active {
-  background-color: #f72585;
-  border: None;
+  background-color: #f72585 !important;
+  border: none;
 }
 .bg-pink-light {
   background-color: #f72585;
-  border: None;
+  border: none;
 }
 
 .purp-darker {
@@ -150,7 +150,7 @@ img {
 .purp-darker:hover,
 .purp-darker:focus,
 .purp-darker:active {
-  color: #3b56ce;
+  color: #3b56ce !important;
 }
 .purp-light {
   color: #3b56ce;
@@ -342,6 +342,19 @@ h1.cursive {
   .form-inline > .form-group > .form-control {
     width: 100%;
     margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 992px) {
+  /*lg*/
+  .addact-btn {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .form-inline {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 
